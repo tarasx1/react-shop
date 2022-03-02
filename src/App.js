@@ -10,29 +10,6 @@ import Favorites from './pages/Favorites';
 import Home from './pages/Home';
 import Orders from './pages/Orders';
 
-// const arr = [
-//   {
-//     title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-//     price: 12999,
-//     imageUrl: '/img/sneakers/1.jpg',
-//   },
-//   {
-//     title: 'Мужские Кроссовки Nike Air Max 270',
-//     price: 16500,
-//     imageUrl: '/img/sneakers/2.jpg',
-//   },
-//   {
-//     title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-//     price: 8499,
-//     imageUrl: '/img/sneakers/3.jpg',
-//   },
-//   {
-//     title: 'Кроссовки Puma X Aka Boku Future Rider',
-//     price: 8999,
-//     imageUrl: '/img/sneakers/4.jpg',
-//   },
-// ];
-
 function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -162,7 +139,7 @@ function App() {
 
         <Header onClickCart={setCartOpened} />
         {/* <Route path="/favorites" render={<div>12345</div>} /> */}
-        <Route path="/" exact>
+        <Route path="" exact>
           <Home
             items={items}
             cartItems={cartItems}
@@ -174,10 +151,10 @@ function App() {
             isLoading={isLoading}
           />
         </Route>
-        <Route path="/favorites">
+        <Route path="favorites">
           <Favorites />
         </Route>
-        <Route path="/orders">
+        <Route path="orders">
           <Orders />
         </Route>
       </div>

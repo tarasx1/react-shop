@@ -40,7 +40,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
           <img
             onClick={onClose}
             className="cu-p"
-            src="/img/btn-remove.svg"
+            src="img/btn-remove.svg"
             alt="Remove"
           />
         </h2>
@@ -60,7 +60,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                   </div>
                   <img
                     className="removeBtn"
-                    src="/img/btn-remove.svg"
+                    src="img/btn-remove.svg"
                     alt="Remove"
                     onClick={() => onRemove(obj.id)}
                   />
@@ -86,7 +86,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 className="greenButton"
               >
                 Go to checkout
-                <img src="/img/arrow.svg" alt="Arrow" />
+                <img src="img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </div>
@@ -94,9 +94,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
           <Info
             title={isOrderComplete ? 'Order complete!' : 'Cart empty'}
             image={
-              isOrderComplete
-                ? '/img/complete-order.jpg'
-                : '/img/empty-cart.jpg'
+              isOrderComplete ? 'img/complete-order.jpg' : 'img/empty-cart.jpg'
             }
             description={
               isOrderComplete
@@ -104,23 +102,6 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 : 'Add at least one pair of sneakers to make an order.'
             }
           />
-          // <div className="cartEmpty d-flex align-center justify-center flex-column flex">
-          //   <img
-          //     className="mb-20"
-          //     width="120px"
-          //     height="120px"
-          //     src="/img/empty-cart.jpg"
-          //     alt="Empty-cart"
-          //   />
-          //   <h2>Cart empty</h2>
-          //   <p className="opacity-6">
-          //     Add at least one pair of sneakers to make an order.{' '}
-          //   </p>
-          //   <button className="greenButton" onClick={onClose}>
-          //     <img src="/img/arrow.svg" alt="Arrow" />
-          //     Go to back
-          //   </button>
-          // </div>
         )}
       </div>
     </div>
