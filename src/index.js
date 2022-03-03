@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import 'macro-css';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <App />
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
