@@ -13,10 +13,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-{
-  /* <HashRouter basename={process.env.PUBLIC_URL}> */
-}
-{
-  /* </HashRouter> */
-}
