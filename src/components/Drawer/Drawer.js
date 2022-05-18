@@ -14,9 +14,12 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
   const onClickOrder = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.post('http://localhost:3001/orders', {
-        items: cartItems,
-      });
+      const { data } = await axios.post(
+        'https://6284d2603060bbd3473fd6d8.mockapi.io/orders',
+        {
+          items: cartItems,
+        }
+      );
 
       setOrderId(data.id);
       setIsOrderComplete(true);
@@ -24,7 +27,9 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
 
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
-        await axios.delete('http://localhost:3001/cart/' + item.id);
+        await axios.delete(
+          'https://6284d2603060bbd3473fd6d8.mockapi.io/cart/' + item.id
+        );
         await delay(1000);
       }
     } catch (error) {
@@ -40,7 +45,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
           <img
             onClick={onClose}
             className="cu-p"
-            src="img/btn-remove.svg"
+            src="react-shop/img/btn-remove.svg"
             alt="Remove"
           />
         </h2>
@@ -60,7 +65,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                   </div>
                   <img
                     className="removeBtn"
-                    src="img/btn-remove.svg"
+                    src="react-shop/img/btn-remove.svg"
                     alt="Remove"
                     onClick={() => onRemove(obj.id)}
                   />
@@ -86,7 +91,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 className="greenButton"
               >
                 Go to checkout
-                <img src="img/arrow.svg" alt="Arrow" />
+                <img src="react-shop/img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </div>
@@ -94,7 +99,9 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
           <Info
             title={isOrderComplete ? 'Order complete!' : 'Cart empty'}
             image={
-              isOrderComplete ? 'img/complete-order.jpg' : 'img/empty-cart.jpg'
+              isOrderComplete
+                ? 'react-shop/img/complete-order.jpg'
+                : 'react-shop/img/empty-cart.jpg'
             }
             description={
               isOrderComplete

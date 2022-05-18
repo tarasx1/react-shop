@@ -2,7 +2,6 @@ import axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Route, Routes, Switch } from 'react-router-dom';
-import Card from './components/Card/Card';
 import Drawer from './components/Drawer/Drawer';
 import Header from './components/Header';
 import { AppContext } from './context';
@@ -11,6 +10,32 @@ import Home from './pages/Home';
 import Orders from './pages/Orders';
 
 function App() {
+  const itemsRes = [
+    {
+      id: 1,
+      title: 'Мужские Кроссовки Nike Blazer Mid Suede',
+      price: 12999,
+      imageUrl: 'img/sneakers/1.jpg',
+    },
+    {
+      id: 2,
+      title: 'Мужские Кроссовки Nike Air Max 270',
+      price: 16500,
+      imageUrl: 'img/sneakers/2.jpg',
+    },
+    {
+      id: 3,
+      title: 'Мужские Кроссовки Nike Blazer Mid Suede',
+      price: 8499,
+      imageUrl: 'img/sneakers/3.jpg',
+    },
+    {
+      id: 4,
+      title: 'Кроссовки Puma X Aka Boku Future Rider',
+      price: 8999,
+      imageUrl: 'img/sneakers/4.jpg',
+    },
+  ];
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [favorites, setFavorites] = useState([]);
@@ -23,9 +48,12 @@ function App() {
       try {
         const [cartResponse, favoritesResponse, itemsResponse] =
           await Promise.all([
-            axios.get('http://localhost:3001/cart'),
-            axios.get('http://localhost:3001/favorites'),
-            axios.get('http://localhost:3001/items'),
+            // axios.get('http://localhost:3001/cart'),
+            // axios.get('http://localhost:3001/favorites'),
+            // axios.get('http://localhost:3001/items'),
+            axios.get('https://6284d2603060bbd3473fd6d8.mockapi.io/cart'),
+            axios.get('https://6284d2603060bbd3473fd6d8.mockapi.io/favorites'),
+            axios.get('https://6284d2603060bbd3473fd6d8.mockapi.io/items'),
           ]);
         // const cartResponse = await axios.get('http://localhost:3001/cart');
         // const favoritesResponse = await axios.get(
@@ -54,10 +82,15 @@ function App() {
         setCartItems((prev) =>
           prev.filter((item) => Number(item.parentId) != Number(obj.id))
         );
-        await axios.delete(`http://localhost:3001/cart/${findItem.id}`);
+        await axios.delete(
+          `https://6284d2603060bbd3473fd6d8.mockapi.io/cart/${findItem.id}`
+        );
       } else {
         setCartItems((prev) => [...prev, obj]);
-        const { data } = await axios.post('http://localhost:3001/cart', obj);
+        const { data } = await axios.post(
+          'https://6284d2603060bbd3473fd6d8.mockapi.io/cart',
+          obj
+        );
         setCartItems((prev) =>
           prev.map((item) => {
             if (item.parentId === data.parentId) {
@@ -78,7 +111,7 @@ function App() {
 
   const onRemoveItem = (id) => {
     try {
-      axios.delete(`http://localhost:3001/cart/${id}`);
+      axios.delete(`https://6284d2603060bbd3473fd6d8.mockapi.io/cart/${id}`);
       setCartItems((prev) =>
         prev.filter((item) => Number(item.id) !== Number(id))
       );
@@ -91,13 +124,15 @@ function App() {
   const onAddToFavorite = async (obj) => {
     try {
       if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
-        axios.delete(`http://localhost:3001/favorites/${obj.id}`);
+        axios.delete(
+          `https://6284d2603060bbd3473fd6d8.mockapi.io/favorites/${obj.id}`
+        );
         setFavorites((prev) =>
           prev.filter((item) => Number(item.id) !== Number(obj.id))
         );
       } else {
         const { data } = await axios.post(
-          'http://localhost:3001/favorites',
+          'https://6284d2603060bbd3473fd6d8.mockapi.io/favorites',
           obj
         );
         setFavorites((prev) => [...prev, data]);
@@ -139,24 +174,26 @@ function App() {
 
         <Header onClickCart={setCartOpened} />
         {/* <Route path="/favorites" render={<div>12345</div>} /> */}
-        <Route path="/" exact>
-          <Home
-            items={items}
-            cartItems={cartItems}
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-            onChangeSearchValue={onChangeSearchValue}
-            onAddToFavorite={onAddToFavorite}
-            onAddToCart={onAddToCart}
-            isLoading={isLoading}
-          />
-        </Route>
-        <Route path="/favorites">
-          <Favorites />
-        </Route>
-        <Route path="/orders">
-          <Orders />
-        </Route>
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              <Home
+                items={items}
+                cartItems={cartItems}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+                onChangeSearchValue={onChangeSearchValue}
+                onAddToFavorite={onAddToFavorite}
+                onAddToCart={onAddToCart}
+                isLoading={isLoading}
+              />
+            }
+          ></Route>
+          <Route path="/favorites" element={<Favorites />}></Route>
+          <Route path="/orders" element={<Orders />}></Route>
+        </Routes>
       </div>
     </AppContext.Provider>
   );

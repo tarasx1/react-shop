@@ -90,7 +90,15 @@
       "imageUrl": "img/sneakers/12.jpg"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": 4,
+      "parentId": 4,
+      "imageUrl": "img/sneakers/4.jpg",
+      "title": "Кроссовки Puma X Aka Boku Future Rider",
+      "price": 8999
+    }
+  ],
   "favorites": [
     {
       "id": 3,

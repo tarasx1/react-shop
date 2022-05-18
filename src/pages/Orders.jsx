@@ -11,7 +11,9 @@ const Orders = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get('http://localhost:3001/orders');
+        const { data } = await axios.get(
+          'https://6284d2603060bbd3473fd6d8.mockapi.io/orders'
+        );
         //console.log(data.map((obj) => obj.items).flat());
         //console.log(data.reduce((prev, obj) => [...prev, ...obj.items], []));
         setOrders(data.map((obj) => obj.items).flat());
