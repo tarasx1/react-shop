@@ -59,7 +59,7 @@ function Card({
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">
               <span>Price:</span>
-              <b>{price} rub.</b>
+              <b>{price} $</b>
             </div>
             {onPlus && (
               <img

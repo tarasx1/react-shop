@@ -61,7 +61,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                   ></div>
                   <div className="mr-20 flex">
                     <p className="mb-5">{obj.title}</p>
-                    <b>{obj.price} rub.</b>
+                    <b>{obj.price} $</b>
                   </div>
                   <img
                     className="removeBtn"
@@ -77,12 +77,12 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 <li>
                   <span>Total:</span>
                   <div></div>
-                  <b>{totalPrice} rub.</b>
+                  <b>{totalPrice} $</b>
                 </li>
                 <li>
                   <span>Tax 5%:</span>
                   <div></div>
-                  <b>{(totalPrice / 100) * 5} rub.</b>
+                  <b>{(totalPrice / 100) * 5} $</b>
                 </li>
               </ul>
               <button
