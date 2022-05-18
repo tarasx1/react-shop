@@ -45,7 +45,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
           <img
             onClick={onClose}
             className="cu-p"
-            src="react-shop/img/btn-remove.svg"
+            src="img/btn-remove.svg"
             alt="Remove"
           />
         </h2>
@@ -65,7 +65,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                   </div>
                   <img
                     className="removeBtn"
-                    src="react-shop/img/btn-remove.svg"
+                    src="img/btn-remove.svg"
                     alt="Remove"
                     onClick={() => onRemove(obj.id)}
                   />
@@ -91,7 +91,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 className="greenButton"
               >
                 Go to checkout
-                <img src="react-shop/img/arrow.svg" alt="Arrow" />
+                <img src="img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </div>
@@ -99,9 +99,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
           <Info
             title={isOrderComplete ? 'Order complete!' : 'Cart empty'}
             image={
-              isOrderComplete
-                ? 'react-shop/img/complete-order.jpg'
-                : 'react-shop/img/empty-cart.jpg'
+              isOrderComplete ? 'img/complete-order.jpg' : 'img/empty-cart.jpg'
             }
             description={
               isOrderComplete
